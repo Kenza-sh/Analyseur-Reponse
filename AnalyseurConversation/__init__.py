@@ -1,10 +1,10 @@
-from sentence_transformers import SentenceTransformer
 import faiss
 import logging
 import azure.functions as func
 import re
 import json
 from typing import Optional, Dict
+from sentence_transformers import SentenceTransformer
 
 app =func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 # Configuration du logger optimisée pour Azure Functions
