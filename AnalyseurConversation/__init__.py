@@ -74,7 +74,7 @@ class AnalyseurConversation:
 
     def recueil_consentement(self, reponse):
         """Retourne 1 pour 'oui', 0 pour 'non' et 2 pour 'indéterminé'."""
-        classification = self.classify_response(reponse)
+        classification = self.positive_negative_reponse(reponse)
         return {"oui": 1, "non": 0, "indéterminé": 2}[classification]
 
 
