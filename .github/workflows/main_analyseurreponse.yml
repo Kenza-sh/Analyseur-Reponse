@@ -34,7 +34,9 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-
+      - name: Set environment variable for Azure deployment
+        run: echo "SCM_DO_BUILD_DURING_DEPLOYMENT=true" >> $GITHUB_ENV
+        
       - name: Install dependencies
         run: pip install -r requirements.txt
 
