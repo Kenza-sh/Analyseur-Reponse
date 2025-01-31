@@ -3,8 +3,9 @@ import logging
 import azure.functions as func
 import re
 import json
-from typing import Optional, Dict
 import os
+from typing import Optional, Dict
+
 
 
 app =func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
