@@ -86,3 +86,9 @@ jobs:
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           
+      - name: Ensure Virtual Environment is Used
+        run: |
+          source my.venv/bin/activate
+          python -m pip check
+          python -c "import sys; print(sys.path)"
+          
