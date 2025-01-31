@@ -34,14 +34,9 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-          
-      - name: Set environment variable for Azure deployment
-        run: echo "SCM_DO_BUILD_DURING_DEPLOYMENT=true" >> $GITHUB_ENV
         
       - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt --target="./.python_packages/lib/site-packages"
+        run: pip install -r requirements.txt --target=.
 
       # Optional: Add step to run tests here
       - name: Set Environment Variables
@@ -51,6 +46,8 @@ jobs:
         run: |
              zip -r release.zip . -x "my.venv/*" ".git/*" "__pycache__/*"
 
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -90,9 +87,4 @@ jobs:
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           
-      - name: Ensure Virtual Environment is Used
-        run: |
-          source venv/bin/activate
-          python -m pip check
-          python -c "import sys; print(sys.path)"
-          
+     
